@@ -1,0 +1,81 @@
+@dc:description "A vocabulary about photosynthetic pathways"
+vocabulary <http://example.com/vocabulary/photosynthetic-pathway#> as photosynthetic-pathway {
+
+    extends <http://www.w3.org/2001/XMLSchema#> as xsd
+
+    extends <http://purl.org/dc/elements/1.1/> as dc
+
+    extends <http://www.w3.org/2000/01/rdf-schema#> as rdfs
+
+    // Top Level
+
+    @rdfs:comment "The class of things that are uniquely identified by id"
+    aspect IdentifiedThing [
+        key hasId
+    ]
+
+    @rdfs:comment "The id property of an identified thing"
+    scalar property hasId [
+        domain IdentifiedThing
+        range xsd:string
+        functional
+    ]
+
+    // Identified Things
+
+    @rdfs:comment "The class of organisms"
+    concept Organism :> IdentifiedThing
+
+    @rdfs:comment "A relation from a organisms to another used as an associated organ"
+    relation entity HasOrgan [
+        from Organism
+        to Organism
+        forward hasOrgan
+        reverse isOrganOf
+        transitive
+    ]
+
+    @rdfs:comment "An enumeration of C3, C4, and CAM photosynthesic pathways"
+    enumerated scalar PhotosyntheticPathway [
+        "C3",
+        "C4",
+        "CAM"
+    ]
+
+    @rdfs:comment "The photosynthetic pathway property of a photosynthesic organism"
+    scalar property hasPhotosyntheticPathway [
+        domain Organism
+        range PhotosyntheticPathway
+        functional
+    ]
+
+    // Organisms
+
+    @rdfs:comment "The class of organisms"
+    concept PhotosyntheticOrganism :> Organism [
+        restricts some relation hasOrgan to Organ
+    ]
+
+    @rdfs:comment "The class of organisms"
+    concept Organ :> Organism
+
+    // Photosynthetic Organisms
+
+    @rdfs:comment "The class of photosynthesic plants"
+    concept PhotosyntheticPlant :> PhotosyntheticOrganism
+
+    @rdfs:comment "The class of photosynthesic algae"
+    concept PhotosyntheticAlgae :> PhotosyntheticOrganism
+
+    // PhotosyntheticOrganism Organs
+
+    @rdfs:comment "The class of RuBisCo"
+    concept RuBisCo :> Organ
+
+    @rdfs:comment "The class of Chloroplast"
+    concept Chloroplast :> Organ
+
+    @rdfs:comment "The class of Mitochondria"
+    concept Mitochondria :> Organ
+
+}
