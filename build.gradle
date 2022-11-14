@@ -1,8 +1,8 @@
 /* 
  * Dataset maven coordinates
  */
-ext.title = "OML Template"
-description='The OML template project'
+ext.title = "Photosynthesis Ontology"
+description='An ontological model of Photosynthesis'
 group = 'io.opencaesar.ontologies'
 version = '0.1.0'
 
@@ -31,11 +31,11 @@ buildscript {
 // Dataset-specific variables
 ext {
     // Name of dataset (matches one used in .fuseki.ttl file)
-    dataset = 'oml-template'
+    dataset = 'photosynthesis-ontology'
     // Root ontology IRI of the dataset
-    rootIri = 'http://opencaesar.io/template/description/bundle'
+    rootIri = 'http://example.com/description/bundle'
     // URL for publishing dataset documentation
-    url = 'https://opencaesar.github.io/oml-template'
+    url = 'http://example.com/photosynthesis-ontology'
     // Bikeshed folder
     bikeshed = 'build/bikeshed'
 }
